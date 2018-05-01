@@ -2,33 +2,36 @@ package com.phoneBook;
 
 public class Address {
 
-   private String streetNumber, streetName, city, state, zip, phone, eMail;
-	
-	/*String streetName;
-	
-	String city;
-	
-	String state;
-	
-    String zip;
-    
-    String phone;
-    
-    String eMail;*/
-	
-	public Address(){}
-	
-	public Address(String streetNumber, String streetName, String city, String state, 
-			       String zip, String phone, String eMail) {
-		
-		this.streetNumber=streetNumber;
-		this.streetName=streetName;
-		this.city=city;
-		this.state=state;
-		this.zip=zip;
-		this.phone=phone;
-		this.eMail=eMail;
-		
+	private String streetNumber, streetName, city, state, zip, phone, eMail;
+
+	/*
+	 * String streetName;
+	 * 
+	 * String city;
+	 * 
+	 * String state;
+	 * 
+	 * String zip;
+	 * 
+	 * String phone;
+	 * 
+	 * String eMail;
+	 */
+
+	public Address() {
+	}
+
+	public Address(String streetNumber, String streetName, String city, String state, String zip, String phone,
+			String eMail) {
+
+		this.streetNumber = streetNumber;
+		this.streetName = streetName;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phone = phone;
+		this.eMail = eMail;
+
 	}
 
 	public String getStreetNumber() {
@@ -75,10 +78,10 @@ public class Address {
 		String a = phone.substring(0, 3);
 		String b = phone.substring(3, 6);
 		String c = phone.substring(6, 10);
-		String newPhone ="("+a+")-" +b+"-"+c;
-		
+		String newPhone = "(" + a + ")-" + b + "-" + c;
+
 		return newPhone;
-		
+
 	}
 
 	public void setPhone(String phone) {
@@ -95,13 +98,9 @@ public class Address {
 
 	@Override
 	public String toString() {
-		
-		
-		
-		return "Address " + streetNumber + " " + streetName + " " + city + " "
-				+ state + " " + zip + " " + getPhone() + " " + eMail + "";
+
+		return "Address " + streetNumber + " " + streetName + " " + city + " " + state + " " + zip + " " + getPhone()
+				+ " " + eMail + "";
 	}
-	
-	
-	
+
 }
