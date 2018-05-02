@@ -39,8 +39,7 @@ public class PhoneBook {
 			System.out.println("Enter 5 for Searching by Phone");
 			System.out.println("Enter 6 for Searching by City name");
 			System.out.println("Enter 7 for Searching by State name");
-			System.out.println("Enter 8 to Show all records in asc order"); // how to do asc order???? // how to add \n
-																			// into printline ???
+			System.out.println("Enter 8 to Show all records in asc order"); // how to do asc order???? 
 			System.out.println("Enter 9 to Update a record by Phone Number");
 			System.out.println("Enter 10 to Exit");
 			opt = s.nextInt();
@@ -93,7 +92,7 @@ public class PhoneBook {
 
 			case 2: // Delete by phone number
 				Scanner input2 = new Scanner(System.in);
-				System.out.println("Enter the Number in this format pls:, (123)-456-7890");
+				System.out.println("Enter the Number in this format pls: (xxx)-xxx-xxxx");
 				String case2 = input2.nextLine();
 				boolean test2 = true;
 				int count1 = 0;
@@ -156,7 +155,7 @@ public class PhoneBook {
 
 			case 5: // Search by Phone
 				Scanner input5 = new Scanner(System.in);
-				System.out.println("Enter Phone Number");
+				System.out.println("Enter Phone Number in format (xxx)-xxx-xxxx");
 				String case5 = input5.nextLine();
 				boolean test5 = true;
 				for (int i = 0; i < persons.length; i++) {
@@ -235,9 +234,9 @@ public class PhoneBook {
 
 			case 9: // Update by Phone Number
 				Scanner input9 = new Scanner(System.in);
-				System.out.println("Enter the Number in this format pls:, (123)-456-7890");
+				System.out.println("Enter the Number in this format pls: (xxx)-xxx-xxxx");
 				String case9 = input9.nextLine();
-				System.out.println("Enter the New Number in this format pls:, 1234567890");
+				System.out.println("Enter the New Number in this format pls: xxxxxxxxxx");
 				String case91 = input9.nextLine();
 				boolean test9 = true;
 				for (int i = 0; i < persons.length; i++) {
