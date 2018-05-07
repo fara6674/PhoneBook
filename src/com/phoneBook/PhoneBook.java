@@ -64,8 +64,6 @@ public class PhoneBook {
 		personsArrayList.add(person2);
 		personsArrayList.add(person3);
 
-		int countOfPeopleArray = 3;
-
 		int opt;
 		Scanner s = new Scanner(System.in);
 		System.out.println("Welcome to Phone Book, Please choose from below options to continue !!!\n");
@@ -119,7 +117,7 @@ public class PhoneBook {
 
 				Person p = new Person(firstName, lastName,
 						new Address(streetNum, streetNam, city, state, zip, phone, eMail));
-				//addPerson(personsArrayList, p);
+				// addPerson(personsArrayList, p);
 				personsArrayList.add(p);
 				System.out.println("\nEntered recod was successfully saved into PhoneBook\n");
 
@@ -134,7 +132,7 @@ public class PhoneBook {
 				boolean test2 = true;
 				int countOfPeopleArray1 = 0;
 				for (int i = 0; i < personsArrayList.size(); i++) {
-					if (personsArrayList.get(i)!= null) {
+					if (personsArrayList.get(i) != null) {
 						if (personsArrayList.get(i).getAddress().getPhone().equals(deleteByPhone)) {
 							personsArrayList.remove(i);
 							countOfPeopleArray1--;
@@ -157,8 +155,9 @@ public class PhoneBook {
 				for (int i = 0; i < personsArrayList.size(); i++) {
 					if (personsArrayList.get(i) != null) {
 						if (personsArrayList.get(i).getFirstName().equals(findByFname)) {
-							System.out.println(personsArrayList.get(i).getFirstName() + " "
-									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
+							System.out.println(
+									personsArrayList.get(i).getFirstName() + " " + personsArrayList.get(i).getLastName()
+											+ " " + personsArrayList.get(i).getAddress());
 							test3 = false;
 						}
 					}
@@ -177,8 +176,9 @@ public class PhoneBook {
 				for (int i = 0; i < personsArrayList.size(); i++) {
 					if (personsArrayList.get(i) != null) {
 						if (personsArrayList.get(i).getLastName().equals(findByLname)) {
-							System.out.println(personsArrayList.get(i).getLastName() + " "
-									+ personsArrayList.get(i).getFirstName() + " " + personsArrayList.get(i).getAddress());
+							System.out.println(
+									personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getFirstName()
+											+ " " + personsArrayList.get(i).getAddress());
 							test4 = false;
 						}
 					}
@@ -197,8 +197,9 @@ public class PhoneBook {
 				for (int i = 0; i < personsArrayList.size(); i++) {
 					if (personsArrayList.get(i) != null) {
 						if (personsArrayList.get(i).getAddress().getPhone().equals(findByPhone)) {
-							System.out.println(personsArrayList.get(i).getFirstName() + " "
-									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
+							System.out.println(
+									personsArrayList.get(i).getFirstName() + " " + personsArrayList.get(i).getLastName()
+											+ " " + personsArrayList.get(i).getAddress());
 							test5 = false;
 						}
 					}
@@ -217,8 +218,9 @@ public class PhoneBook {
 				for (int i = 0; i < personsArrayList.size(); i++) {
 					if (personsArrayList.get(i) != null) {
 						if (personsArrayList.get(i).getAddress().getCity().equals(findByCity)) {
-							System.out.println(personsArrayList.get(i).getFirstName() + " "
-									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
+							System.out.println(
+									personsArrayList.get(i).getFirstName() + " " + personsArrayList.get(i).getLastName()
+											+ " " + personsArrayList.get(i).getAddress());
 							test6 = false;
 						}
 					}
@@ -237,8 +239,9 @@ public class PhoneBook {
 				for (int i = 0; i < personsArrayList.size(); i++) {
 					if (personsArrayList.get(i) != null) {
 						if (personsArrayList.get(i).getAddress().getState().equals(findByState)) {
-							System.out.println(personsArrayList.get(i).getFirstName() + " "
-									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
+							System.out.println(
+									personsArrayList.get(i).getFirstName() + " " + personsArrayList.get(i).getLastName()
+											+ " " + personsArrayList.get(i).getAddress());
 							test7 = false;
 						}
 					}
@@ -290,7 +293,7 @@ public class PhoneBook {
 
 							personsArrayList.get(i).getAddress().setPhone(newPhoneNum);
 							test9 = false;
-							System.out.println(updateByPhone + "\nis successfully Updated to\n" + newPhoneNum+"\n");
+							System.out.println(updateByPhone + "\nis successfully Updated to\n" + newPhoneNum + "\n");
 						}
 					}
 				}
@@ -310,7 +313,5 @@ public class PhoneBook {
 		}
 
 	}
-
-	
 
 }
