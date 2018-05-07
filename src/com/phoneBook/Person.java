@@ -1,8 +1,8 @@
 package com.phoneBook;
 
-public class Person {
+public class Person implements Comparable<Person>{
 
-	private String firstName, lastName; // middleName
+	private String firstName, lastName; 
 
 	// private String lastName;
 
@@ -12,12 +12,15 @@ public class Person {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
-		// this.middleName=middleName;
 		this.address = address;
 
 	}
 
 	public Person() {
+	}
+	 @Override
+	public int compareTo(Person p) {
+		return this.firstName.compareTo(p.getFirstName());
 	}
 
 	public String getFirstName() {
@@ -44,6 +47,13 @@ public class Person {
 		this.address = address;
 	}
 
+	@Override
+	public String toString() {
+		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + "]";
+	}
+
 	// will add-->> date of birth
+	
+	
 
 }

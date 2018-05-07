@@ -1,13 +1,51 @@
+/*ClassName PhoneBook
+
+Version 1.1.1
+
+Copyright Notice Public 
+
+Project 2 PhoneBook Application
+Write a program to simulate the actions of a phonebook.
+Your program should be able to :
+Add new entries 
+Search for an existing entry
+Search by first name *
+Search by last name *
+Search by full name *note name is not unique therefore the result should be an array of Person Objects.
+Search by telephone number
+Search by city or state
+Delete a record for a given telephone number
+Update a record for a given telephone number
+Show all records in asc order
+An option to exit the program 
+Your program should operate on the console. It should display all the choices when the program loads. Eg 1. Add new record
+    2. Delete a record
+               Etc.. where 1 representing the action for adding a record and 2 representing the action
+               for deleting a record.
+Your program should run until the user selects the exit option. 
+Your program should have a minimum of 2 classes a Person class, an Address  class.
+
+Test case :
+John Doe, 114 Market St, St Louis, MO, 63403, 6366435698
+John E Doe, 324 Main St, St Charles, MO,63303, 8475390126
+John Michael West Doe, 574 Pole ave, St. Peters, MO, 63333, 5628592375
+
+Searching for John should return a list of all 3 records above, displaying the telephone number in this order (636)-453-8563.
+
+Optional add additional features to your program, for storing cell, home, work and fax numbers. 
+Also features for storing events like birthday, anniversary, email… etc  */
+
 package com.phoneBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class PhoneBook {
 
 	public static void main(String[] args) {
-
-		// Person persons[];
 
 		Address addressPerson1 = new Address("114", "Market St", "St Louis", "MO", "63403", "6366435698",
 				"doe@test.com");
@@ -17,15 +55,16 @@ public class PhoneBook {
 				"westdoe@test.com");
 
 		Person person1 = new Person("John", "Doe", addressPerson1);
-		Person person2 = new Person("John", "E Doe", addressPerson2);
-		Person person3 = new Person("John", "Michael West Doe", addressPerson3);
+		Person person2 = new Person("Zack", "E Doe", addressPerson2);
+		Person person3 = new Person("Adam", "Michael West Doe", addressPerson3);
 
-		Person persons[] = new Person[10];
-		persons[0] = person1;
-		persons[1] = person2;
-		persons[2] = person3;
+		ArrayList<Person> personsArrayList = new ArrayList<>();
 
-		int count = 3;
+		personsArrayList.add(person1);
+		personsArrayList.add(person2);
+		personsArrayList.add(person3);
+
+		int countOfPeopleArray = 3;
 
 		int opt;
 		Scanner s = new Scanner(System.in);
@@ -39,7 +78,7 @@ public class PhoneBook {
 			System.out.println("Enter 5 for Searching by Phone");
 			System.out.println("Enter 6 for Searching by City name");
 			System.out.println("Enter 7 for Searching by State name");
-			System.out.println("Enter 8 to Show all records in asc order"); // how to do asc order???? 
+			System.out.println("Enter 8 to Show all records in asc order"); // how to do asc order????
 			System.out.println("Enter 9 to Update a record by Phone Number");
 			System.out.println("Enter 10 to Exit");
 			opt = s.nextInt();
@@ -80,28 +119,25 @@ public class PhoneBook {
 
 				Person p = new Person(firstName, lastName,
 						new Address(streetNum, streetNam, city, state, zip, phone, eMail));
-				if (count < 9) { // int count = 3;
-					persons[count] = p;
-					count++;
-					System.out.println("\nEntered recod was successfully saved into PhoneBook\n");
-				}
+				//addPerson(personsArrayList, p);
+				personsArrayList.add(p);
+				System.out.println("\nEntered recod was successfully saved into PhoneBook\n");
 
 				break;
 
-			// if (persons[i] != null)
+			// if (personsArrayList[i] != null)
 
 			case 2: // Delete by phone number
 				Scanner input2 = new Scanner(System.in);
 				System.out.println("Enter the Number in this format pls: (xxx)-xxx-xxxx");
-				String case2 = input2.nextLine();
+				String deleteByPhone = input2.nextLine();
 				boolean test2 = true;
-				int count1 = 0;
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-						if (persons[i].getAddress().getPhone().equals(case2)) {
-							persons[i] = null;
-							count1--;
-
+				int countOfPeopleArray1 = 0;
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i)!= null) {
+						if (personsArrayList.get(i).getAddress().getPhone().equals(deleteByPhone)) {
+							personsArrayList.remove(i);
+							countOfPeopleArray1--;
 							System.out.println("\nRequested record was successfully deleted\n");
 							test2 = false;
 						}
@@ -116,13 +152,13 @@ public class PhoneBook {
 			case 3: // Search by First name
 				Scanner input3 = new Scanner(System.in);
 				System.out.println("Enter first name, *Case sansative*");
-				String case3 = input3.nextLine();
+				String findByFname = input3.nextLine();
 				boolean test3 = true;
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-						if (persons[i].getFirstName().equals(case3)) {
-							System.out.println(persons[i].getFirstName() + " " + persons[i].getLastName() + " "
-									+ persons[i].getAddress());
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						if (personsArrayList.get(i).getFirstName().equals(findByFname)) {
+							System.out.println(personsArrayList.get(i).getFirstName() + " "
+									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
 							test3 = false;
 						}
 					}
@@ -136,13 +172,13 @@ public class PhoneBook {
 			case 4: // Search by Last name
 				Scanner input4 = new Scanner(System.in);
 				System.out.println("Enter last name, *Case sansative*");
-				String case4 = input4.nextLine();
+				String findByLname = input4.nextLine();
 				boolean test4 = true;
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-						if (persons[i].getLastName().equals(case4)) {
-							System.out.println(persons[i].getFirstName() + " " + persons[i].getLastName() + " "
-									+ persons[i].getAddress());
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						if (personsArrayList.get(i).getLastName().equals(findByLname)) {
+							System.out.println(personsArrayList.get(i).getLastName() + " "
+									+ personsArrayList.get(i).getFirstName() + " " + personsArrayList.get(i).getAddress());
 							test4 = false;
 						}
 					}
@@ -156,13 +192,13 @@ public class PhoneBook {
 			case 5: // Search by Phone
 				Scanner input5 = new Scanner(System.in);
 				System.out.println("Enter Phone Number in format (xxx)-xxx-xxxx");
-				String case5 = input5.nextLine();
+				String findByPhone = input5.nextLine();
 				boolean test5 = true;
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-						if (persons[i].getAddress().getPhone().equals(case5)) {
-							System.out.println(persons[i].getFirstName() + " " + persons[i].getLastName() + " "
-									+ persons[i].getAddress());
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						if (personsArrayList.get(i).getAddress().getPhone().equals(findByPhone)) {
+							System.out.println(personsArrayList.get(i).getFirstName() + " "
+									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
 							test5 = false;
 						}
 					}
@@ -176,13 +212,13 @@ public class PhoneBook {
 			case 6: // Search by City
 				Scanner input6 = new Scanner(System.in);
 				System.out.println("Enter the City, *Case sansative*");
-				String case6 = input6.nextLine();
+				String findByCity = input6.nextLine();
 				boolean test6 = true;
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-						if (persons[i].getAddress().getCity().equals(case6)) {
-							System.out.println(persons[i].getFirstName() + " " + persons[i].getLastName() + " "
-									+ persons[i].getAddress());
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						if (personsArrayList.get(i).getAddress().getCity().equals(findByCity)) {
+							System.out.println(personsArrayList.get(i).getFirstName() + " "
+									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
 							test6 = false;
 						}
 					}
@@ -196,17 +232,18 @@ public class PhoneBook {
 			case 7: // Search by State
 				Scanner input7 = new Scanner(System.in);
 				System.out.println("Enter the State, *Case sansative*");
-				String case7 = input7.nextLine();
+				String findByState = input7.nextLine();
 				boolean test7 = true;
-				for (int i = 0; i < persons.length; i++) {
-					// if (persons[i] != null) {
-					if (persons[i].getAddress().getState().equals(case7)) {
-						System.out.println(persons[i].getFirstName() + " " + persons[i].getLastName() + " "
-								+ persons[i].getAddress());
-						test7 = false;
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						if (personsArrayList.get(i).getAddress().getState().equals(findByState)) {
+							System.out.println(personsArrayList.get(i).getFirstName() + " "
+									+ personsArrayList.get(i).getLastName() + " " + personsArrayList.get(i).getAddress());
+							test7 = false;
+						}
 					}
-					// }
 				}
+
 				if (test7) {
 					System.out.println("No such a State name found in PhoneBook\n");
 				}
@@ -216,18 +253,26 @@ public class PhoneBook {
 			case 8: // Show all records in asc order
 
 				// int arr[]={33,3,4,5};
-				// Person persons[] = new Person[10];
-				// Arrays.sort(persons);
+				// Person personsArrayList[] = new Person[10];
+				// Arrays.sort(personsArrayList);
 				// System.out.println(Arrays.toString (newarr));
-
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-
-						System.out.println(persons[i].getFirstName() + " " + persons[i].getLastName() + " "
-								+ persons[i].getAddress());
-						test7 = false;
-
+				int count = 0;
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						count++;
 					}
+				}
+
+				String[] personNames = new String[count];
+
+				for (int i = 0; i < personNames.length; i++) {
+					personNames[i] = personsArrayList.get(i).getFirstName();
+				}
+
+				Collections.sort(personsArrayList);
+
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					System.out.println(personsArrayList.get(i));
 				}
 
 				break;
@@ -235,17 +280,17 @@ public class PhoneBook {
 			case 9: // Update by Phone Number
 				Scanner input9 = new Scanner(System.in);
 				System.out.println("Enter the Number in this format pls: (xxx)-xxx-xxxx");
-				String case9 = input9.nextLine();
-				System.out.println("Enter the New Number in this format pls: xxxxxxxxxx");
-				String case91 = input9.nextLine();
+				String updateByPhone = input9.nextLine();
+				System.out.print("Enter the New Number in this format pls: xxxxxxxxxx");
+				String newPhoneNum = input9.nextLine();
 				boolean test9 = true;
-				for (int i = 0; i < persons.length; i++) {
-					if (persons[i] != null) {
-						if (persons[i].getAddress().getPhone().equals(case9)) {
+				for (int i = 0; i < personsArrayList.size(); i++) {
+					if (personsArrayList.get(i) != null) {
+						if (personsArrayList.get(i).getAddress().getPhone().equals(updateByPhone)) {
 
-							persons[i].getAddress().setPhone(case91);
+							personsArrayList.get(i).getAddress().setPhone(newPhoneNum);
 							test9 = false;
-							System.out.println(case9 + "\nis successfully Updated\n" + case91);
+							System.out.println(updateByPhone + "\nis successfully Updated to\n" + newPhoneNum+"\n");
 						}
 					}
 				}
@@ -265,5 +310,7 @@ public class PhoneBook {
 		}
 
 	}
+
+	
 
 }
